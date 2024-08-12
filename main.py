@@ -17,7 +17,7 @@ from transformers import BlipProcessor, BlipForConditionalGeneration
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-CONFIDENCE_THRESHOLD = 0.6  
+CONFIDENCE_THRESHOLD = 0.55 
 
 def detect_objects(image_path):
     """Detect objects in the provided image using YOLOv8 and save the image with bounding boxes.""" #
@@ -104,7 +104,7 @@ def main():
     """Process the input image and save the refined description to a text file.""" #
     output_file = "image_description.txt"
     global image_path #
-    
+
     if not os.path.exists(image_path):
         image_path = input(f"I couldn't find an image with path {image_path}, please input the correct pathname here: ")
 

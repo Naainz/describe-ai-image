@@ -11,7 +11,7 @@ app = Flask(__name__)
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-CONFIDENCE_THRESHOLD = 0.6  
+CONFIDENCE_THRESHOLD = 0.55
 UPLOAD_FOLDER = 'static/uploads'
 PROCESSED_FOLDER = 'static/processed'
 

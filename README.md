@@ -21,6 +21,17 @@ OPENAI_API_KEY=sk-your-openai-api-key
 python main.py
 ```
 
+### Option 2: Run the GUI in a web browser
+
+1. Run the script:
+```bash
+python web.py
+```
+
+2. Open a web browser and go to `http://localhost:5000`
+
+3. Upload an image and follow the provided instructions.
+
 ## Results
 
 The script will analyse the image provided and generate a description for it. The script will also run YOLO to detect objects in the image. The script then calls the GPT4o-mini model to generate a description of the image.
