@@ -8,7 +8,7 @@ This project shows how to use [YOLOv8](https://github.com/ultralytics/ultralytic
 
 1. Install the required packages:
 ```bash
-pip install Pillow ultralytics openai python-dotenv transformers
+pip install flask pillow ultralytics openai transformers python-dotenv
 ```
 
 2. Create a `.env` file with the following content:
