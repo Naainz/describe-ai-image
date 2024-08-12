@@ -1,28 +1,20 @@
-import os
-import cv2
-import numpy as np
-from collections import Counter
-from sklearn.cluster import KMeans
-import spacy
+import torch
+from transformers import BlipProcessor, BlipForConditionalGeneration
+from PIL import Image
 
+def generate_image_description(image_path):
+    """Generate a description for the provided image using a pre-trained model."""
+    processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
+    model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
 
-nlp = spacy.load("en_core_web_sm")
+    
+    image = Image.open(image_path).convert("RGB")
+    inputs = processor(image, return_tensors="pt")
 
-def extract_tags(text):
-    """Extract relevant tags (lemmas) from the provided text."""
-    doc = nlp(text)
-    return [token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
-
-def create_image_description(image_path):
-    """Generate a simple and generic description of the image."""
-    filename = os.path.splitext(os.path.basename(image_path))[0]
-    tags = extract_tags(filename)
-
-    if tags:
-        description = f"This image captures elements of {', '.join(tags)}."
-    else:
-        description = "This image presents a captivating visual."
-
+    
+    out = model.generate(**inputs)
+    description = processor.decode(out[0], skip_special_tokens=True)
+    
     return description
 
 def main():
@@ -30,9 +22,9 @@ def main():
     image_path = "input.jpeg"
     output_file = "image_description.txt"
 
-    description = create_image_description(image_path)
+    description = generate_image_description(image_path)
     with open(output_file, "w") as f:
-        f.write(f"{os.path.basename(image_path)}: {description}\n")
+        f.write(f"{description}\n")
 
 if __name__ == "__main__":
     main()
