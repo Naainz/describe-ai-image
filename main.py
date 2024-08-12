@@ -1,7 +1,9 @@
 # Lines marked with '#' are the lines that were AI generated.
 # Additionally, some logs were also added thru AI, however, not all of them.
 
-# Change the image path:
+# HEY YOU! YES YOU! If you want to run this code, 
+# you need to change the image_path variable to the path
+# of the image you want to process.
 image_path = "input.jpeg"
 
 
@@ -103,8 +105,7 @@ def main():
     output_file = "image_description.txt"
 
     if not os.path.exists(image_path):
-        print(f"I couldn't find an image with path {image_path}, please input the pathname here: ") #
-        return
+        image_path = input(f"I couldn't find an image with path {image_path}, please input the correct pathname here: ")
 
     print("Starting object detection process...")
     detected_objects = detect_objects(image_path)
