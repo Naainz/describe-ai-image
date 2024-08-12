@@ -1,9 +1,13 @@
 Caption: a view of a lake and mountains from a train window
 
 Description:
-- A train window offers a panoramic view.  
-- In the foreground, a serene lake reflects the sky.  
-- Surrounding the lake are lush, green banks.  
-- The background features majestic mountains, rising steeply.  
-- The peaks are partially obscured by wispy clouds.  
-- The overall scene conveys a sense of tranquility and natural beauty.
+The scene viewed from the train window includes:
+
+- A serene lake, 
+  - Its surface reflecting the surrounding landscape. 
+
+- Majestic mountains, 
+  - Towering in the background, 
+  - Their peaks possibly snow-capped. 
+
+The composition captures a harmonious blend of water and mountains, offering a picturesque vista.
