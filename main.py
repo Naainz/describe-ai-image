@@ -1,5 +1,5 @@
 import torch
-from transformers import BlipProcessor, BlipForConditionalGeneration, GPT2Tokenizer, GPT2LMHeadModel
+from transformers import BlipProcessor, BlipForConditionalGeneration, PegasusTokenizer, PegasusForConditionalGeneration
 from PIL import Image
 
 def generate_image_caption(image_path):
@@ -18,25 +18,27 @@ def generate_image_caption(image_path):
     return caption
 
 def generate_advanced_description(caption):
-    """Generate an advanced, multi-line description using DistilGPT-2."""
+    """Generate an advanced, multi-line description using Pegasus."""
     
-    tokenizer = GPT2Tokenizer.from_pretrained("distilgpt2")
-    model = GPT2LMHeadModel.from_pretrained("distilgpt2")
+    tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
+    model = PegasusForConditionalGeneration.from_pretrained("google/pegasus-xsum")
 
     
     prompt = (
-        f"Here is a caption: {caption}. "
-        "Please generate a detailed description of this scene, but do not make any assumptions or add any information that is not explicitly provided in the caption."
+        f"Caption: {caption}\n\n"
+        "Generate a detailed description of the caption {caption}. You can include additional information, context, or details that are explicitly mentioned in the caption. Don't include generic or unrelated statements. Be descriptive and provide a detailed account of the caption."
     )
 
     
-    inputs = tokenizer.encode(prompt, return_tensors="pt")
+    inputs = tokenizer(prompt, return_tensors="pt", max_length=1024, truncation=True)
     outputs = model.generate(
-        inputs,
+        inputs["input_ids"],
         max_length=150,
-        num_return_sequences=1,
+        num_beams=5,  
         no_repeat_ngram_size=3,
-        temperature=0.7,
+        temperature=0.6,  
+        top_p=0.9,  
+        early_stopping=True,
         do_sample=True
     )
 
