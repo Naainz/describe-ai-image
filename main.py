@@ -9,6 +9,8 @@ from transformers import BlipProcessor, BlipForConditionalGeneration
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+CONFIDENCE_THRESHOLD = 0.6  
+
 def detect_objects(image_path):
     """Detect objects in the provided image using YOLOv8 and save the image with bounding boxes."""
     print("Loading YOLOv8 model for object detection...")
@@ -18,21 +20,26 @@ def detect_objects(image_path):
     results = model(image_path)
 
     
-    for result in results:
-        result.plot()
-        result.save("yolo.png")  
-
-    
     detected_objects = {}
     for result in results:
         for box in result.boxes:
-            cls_name = model.names[int(box.cls[0])]
-            if cls_name in detected_objects:
-                detected_objects[cls_name] += 1
-            else:
-                detected_objects[cls_name] = 1
+            confidence = box.conf[0].item()
+            if confidence >= CONFIDENCE_THRESHOLD:
+                cls_name = model.names[int(box.cls[0])]
+                if cls_name in detected_objects:
+                    detected_objects[cls_name] += 1
+                else:
+                    detected_objects[cls_name] = 1
 
-    print(f"Objects detected: {detected_objects}")
+    
+    if detected_objects:
+        result.plot()
+        result.save("yolo.png")
+        print(f"Objects detected: {detected_objects}")
+    else:
+        print("No objects detected with high enough confidence.")
+        detected_objects = {"No reliable objects detected": 0}
+
     return detected_objects
 
 def generate_image_caption(image_path):
