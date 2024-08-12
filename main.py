@@ -1,6 +1,12 @@
-import torch
-from transformers import BlipProcessor, BlipForConditionalGeneration, PegasusTokenizer, PegasusForConditionalGeneration
+import os
+import openai
+from dotenv import load_dotenv
+from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
+
+
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def generate_image_caption(image_path):
     """Generate a caption for the provided image using the BLIP model."""
@@ -18,34 +24,20 @@ def generate_image_caption(image_path):
     return caption
 
 def generate_advanced_description(caption):
-    """Generate an advanced, multi-line description using Pegasus."""
-    
-    tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
-    model = PegasusForConditionalGeneration.from_pretrained("google/pegasus-xsum")
-
-    
-    prompt = (
-        f"Caption: {caption}\n\n"
-        "Generate a detailed description of the caption {caption}. You can include additional information, context, or details that are explicitly mentioned in the caption. Don't include generic or unrelated statements. Be descriptive and provide a detailed account of the caption."
+    """Generate an advanced, multi-line description using GPT-4o-mini."""
+    completion = openai.ChatCompletion.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": (
+                f"Caption: {caption}\n\n"
+                "Generate a detailed description of the scene described in the caption. Focus on the elements mentioned. "
+                "Don't include arbitrary or unrelated information."
+            )}
+        ]
     )
 
-    
-    inputs = tokenizer(prompt, return_tensors="pt", max_length=1024, truncation=True)
-    outputs = model.generate(
-        inputs["input_ids"],
-        max_length=150,
-        num_beams=5,  
-        no_repeat_ngram_size=3,
-        temperature=0.6,  
-        top_p=0.9,  
-        early_stopping=True,
-        do_sample=True
-    )
-
-    
-    generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
-
-    return generated_text.strip()
+    return completion.choices[0].message['content'].strip()
 
 def main():
     """Process the input image and save the refined description to a text file."""
