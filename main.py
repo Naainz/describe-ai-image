@@ -103,7 +103,8 @@ def save_description_to_file(detected_objects, caption, description, output_file
 def main():
     """Process the input image and save the refined description to a text file.""" #
     output_file = "image_description.txt"
-
+    global image_path #
+    
     if not os.path.exists(image_path):
         image_path = input(f"I couldn't find an image with path {image_path}, please input the correct pathname here: ")
 

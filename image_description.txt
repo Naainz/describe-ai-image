@@ -1,16 +1,20 @@
 Detected objects:
-No reliable objects detected: 0
+boat: 1
 
-Caption: a view of a lake and mountains from a train window
+Caption: tower bridge, london, england
 
 Description:
-A serene landscape unfolds outside the train window:
+**Scene Description:**
 
-- A tranquil lake sits at the foreground, reflecting the sky above.
-- Surrounding the lake are majestic mountains,
-  their peaks rising sharply,
-  partially covered in greenery.
-- The sunlight casts gentle shadows,
-  highlighting the natural contours of the terrain.
-- Wisps of clouds drift lazily across the blue sky,
-  adding to the overall calmness of the scene.
+- **Location:** Tower Bridge, London, England  
+- **Structure:** A combined bascule and suspension bridge  
+- **Features:**  
+  - Two prominent towers  
+  - Walkways above the bridge  
+  - Moving parts for vessels to pass  
+- **Surroundings:**  
+  - Spanning the River Thames  
+  - Urban setting with nearby buildings  
+  - Potential views of the city skyline   
+
+This scene captures the iconic architecture and function of Tower Bridge in its urban context.
