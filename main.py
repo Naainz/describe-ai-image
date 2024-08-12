@@ -1,5 +1,5 @@
 import torch
-from transformers import BlipProcessor, BlipForConditionalGeneration, T5Tokenizer, T5ForConditionalGeneration
+from transformers import BlipProcessor, BlipForConditionalGeneration, GPT2Tokenizer, GPT2LMHeadModel
 from PIL import Image
 
 def generate_image_caption(image_path):
@@ -18,23 +18,26 @@ def generate_image_caption(image_path):
     return caption
 
 def generate_advanced_description(caption):
-    """Generate an advanced, multi-line description using T5."""
+    """Generate an advanced, multi-line description using DistilGPT-2."""
     
-    tokenizer = T5Tokenizer.from_pretrained("t5-base", legacy=False)
-    model = T5ForConditionalGeneration.from_pretrained("t5-base")
+    tokenizer = GPT2Tokenizer.from_pretrained("distilgpt2")
+    model = GPT2LMHeadModel.from_pretrained("distilgpt2")
 
     
-    prompt = f"Expand the following caption into a detailed and descriptive paragraph: {caption}"
+    prompt = (
+        f"Here is a caption: {caption}. "
+        "Please generate a detailed description of this scene, but do not make any assumptions or add any information that is not explicitly provided in the caption."
+    )
 
     
-    input_ids = tokenizer.encode(prompt, return_tensors='pt')
+    inputs = tokenizer.encode(prompt, return_tensors="pt")
     outputs = model.generate(
-        input_ids,
-        max_length=200,
+        inputs,
+        max_length=150,
         num_return_sequences=1,
-        no_repeat_ngram_size=2,
+        no_repeat_ngram_size=3,
         temperature=0.7,
-        do_sample=True  
+        do_sample=True
     )
 
     

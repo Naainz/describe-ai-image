@@ -1,4 +1,7 @@
 Caption: a view of a lake and mountains from a train window
 
 Description:
-True
+Here is a caption: a view of a lake and mountains from a train window. Please generate a detailed description of this scene, but do not make any assumptions or add any information that is not explicitly provided in the caption.
+
+
+The water from a lake falls in line with the lake, and it flows directly from the lake and toward the lake. The water is in a narrow, high-pressure (MOS) stream, and in short, it is covered by the top of the lake with a thin layer of water. There is no water in the lake in the lower portion of the water. In the lower part of the stream it flows upward and downward, and through the lower sections of the river that are parallel to the lake
