@@ -31,8 +31,8 @@ def generate_advanced_description(caption):
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": (
                 f"Caption: {caption}\n\n"
-                "Generate a detailed description of the scene described in the caption. Focus on the elements mentioned. "
-                "Don't include arbitrary or unrelated information."
+                "Provide a clear and concise description of the scene mentioned in the caption. Stick strictly to the elements presented without adding extra details or imaginative elements. "
+                "Format the description with appropriate indentations and line breaks for readability."
             )}
         ]
     )
