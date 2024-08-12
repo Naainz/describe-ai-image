@@ -4,10 +4,13 @@ No reliable objects detected: 0
 Caption: a view of a lake and mountains from a train window
 
 Description:
-The scene presents:
+A serene landscape unfolds outside the train window:
 
-- A lake, the surface reflecting the surrounding environment.
-- Mountains, rising majestically in the background.
-- The perspective is from a train window, framing the view. 
-
-The combination of these elements captures a serene and picturesque landscape.
+- A tranquil lake sits at the foreground, reflecting the sky above.
+- Surrounding the lake are majestic mountains,
+  their peaks rising sharply,
+  partially covered in greenery.
+- The sunlight casts gentle shadows,
+  highlighting the natural contours of the terrain.
+- Wisps of clouds drift lazily across the blue sky,
+  adding to the overall calmness of the scene.
