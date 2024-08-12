@@ -1,13 +1,16 @@
+Detected objects:
+airplane: 1
+
 Caption: a view of a lake and mountains from a train window
 
 Description:
-The scene viewed from the train window includes:
+**Description of the Scene:**  
 
-- A serene lake, 
-  - Its surface reflecting the surrounding landscape. 
-
-- Majestic mountains, 
-  - Towering in the background, 
-  - Their peaks possibly snow-capped. 
-
-The composition captures a harmonious blend of water and mountains, offering a picturesque vista.
+- A tranquil lake is visible,  
+  reflecting the clear sky above.  
+- Surrounding the lake,  
+  majestic mountains rise steeply,  
+  their peaks touching the clouds.  
+- The scene is framed by the train window,  
+  offering a glimpse of nature's beauty  
+  as the train moves along the track.
